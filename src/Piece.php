@@ -5,7 +5,7 @@ class Piece{
     private $name;
     private $color;
     private $position = [];
-    private $tempPosition;
+    private $tempValue;
     //private $pieces = [];
 
     public function __construct($name, $color, $x, $y)
@@ -13,8 +13,9 @@ class Piece{
         $this->name = $name;
         $this->color = $color; 
         Board::setPiece($x,$y);
-       // $this->tempPosition = Board::;
-    
+        $this->tempValue = Board::getTemp();
+        $this->position['x'] = $x;
+        $this->position['y'] = $y;    
     }
 
     public function getPosition()
@@ -25,6 +26,10 @@ class Piece{
     public function move($x, $y)
     {
         Board::setPiece($x,$y);
+        Board::setUpdate($this->position['x'],$this->position['y'],$this->tempValue);
+        $this->position['x'] = $x;
+        $this->position['y'] = $y;
+        $this->tempValue = Board::getTemp();
 
     }
 }

@@ -18,17 +18,23 @@ class Board
 
     public static function setPiece($a, $b)
     {
-        if (self::$board[$a][$b+1] != 0) {
+        if (self::$board[$a][$b-1] != 0) {
            
-            self::$temp = self::$board[$a][$b+1];
-            self::$board[$a][$b+1] = 0;
+            self::$temp = self::$board[$a][$b-1];
+            self::$board[$a][$b-1] = 0;
 
         }
     }
+    
+    public static function setUpdate($a, $b, $temp)
+    {
+            self::$board[$a][$b-1] = $temp;
+    }
+    
 
-    // public function getTemp(){
-    //     return self::$temp;
-    // }
+    public function getTemp(){
+        return self::$temp;
+    }
 
     public function getBoard()
     {
